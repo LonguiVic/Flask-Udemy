@@ -1,10 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/')
+frutas = []
+
+
+@app.route('/', methods=["GET", "POST"])
 def principal():
-    frutas = ["Morango", "Uva", "Maçã", "Mamão", "Pera", "Melão", "Caju", "Mirtilo"]
+    # frutas = ["Morango", "Uva", "Maçã", "Mamão", "Pera", "Melão", "Caju", "Mirtilo"]
+    if request.method == "POST":
+        if request.form.get("fruta"):
+            frutas.append(request.form.get("fruta"))
     return render_template("index.html", frutas=frutas)
     # por padrão, é comum chamarmos com o mesmo nome função=idade(nome=nome)
 
