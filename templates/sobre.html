@@ -8,5 +8,12 @@
 <body>
     <h1>Página sobre</h1>
     <hr>
+
+    {% for chave, valor in notas.items() %}
+        <details>
+            <summary>{{chave}}</summary>
+            <p>{{valor}}</p>
+        </details>
+    {% endfor %}
 </body>
 </html>
