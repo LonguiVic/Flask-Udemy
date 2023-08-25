@@ -6,14 +6,21 @@
     <title>Sobre</title>
 </head>
 <body>
-    <h1>Página sobre</h1>
+    <h1 style="text-align: center">Diário do Professor</h1>
     <hr>
 
-    {% for chave, valor in notas.items() %}
+    {% for registro in registros %}
         <details>
-            <summary>{{chave}}</summary>
-            <p>{{valor}}</p>
+            <summary>{{registro.aluno}}</summary>
+            <p>{{registro.nota}}</p>
         </details>
     {% endfor %}
+    <form action="{{url_for('sobre')}}" method="POST">
+        <label for="">Aluno</label>
+        <input type="text" name="aluno" required>
+        <label for="">Nota</label>
+        <input type="text" name="nota" required>
+        <button>Adicionar</button>
+    </form>
 </body>
 </html>
