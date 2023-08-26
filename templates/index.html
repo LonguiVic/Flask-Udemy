@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Frutas</title>
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% block conteudo %}
     <h2 style="text-align: center;">Lista de Frutas</h2>
     <hr>
     <ol>
@@ -20,7 +12,4 @@
             <button>Adicionar</button>
         </form>
     </ol>
-
-</body>
-
-</html>
+{% endblock conteudo %}

@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block conteudo %}
     <h1 style="text-align: center">Diário do Professor</h1>
     <hr>
 
@@ -22,5 +16,4 @@
         <input type="text" name="nota" required>
         <button>Adicionar</button>
     </form>
-</body>
-</html>
+{% endblock conteudo %}
