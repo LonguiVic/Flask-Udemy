@@ -7,7 +7,7 @@ frutas = []
 registros = []
 
 
-@app.route('/',)
+@app.route('/', methods=["GET", "POST"])
 def principal():
     # frutas = ["Morango", "Uva", "Maçã", "Mamão",
     # "Pera", "Melão", "Caju", "Mirtilo"]
