@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
+import urllib.request
+import json
 
 app = Flask(__name__)
 
@@ -20,6 +22,14 @@ def sobre():
             registros.append({"aluno": request.form.get("aluno"), "nota": request.form.get("nota")})
             return redirect(url_for("sobre"))  # Redireciona após o POST
     return render_template("sobre.html", registros=registros)
+
+@app.route('/filmes')
+def filmes():
+    url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+    resposta = urllib.request.urlopen(url)
+    dados = resposta.read()
+    jsondata = json.loads(dados)
+    return render_template("filmes.html", filmes=jsondata['results'])
 
 if __name__ == "__main__":
     app.run(debug=True)
