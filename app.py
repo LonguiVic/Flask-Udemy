@@ -23,9 +23,19 @@ def sobre():
             return redirect(url_for("sobre"))  # Redireciona após o POST
     return render_template("sobre.html", registros=registros)
 
-@app.route('/filmes')
-def filmes():
-    url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+@app.route('/filmes/<propriedade>')
+def filmes(propriedade):
+
+    if propriedade == 'populares':
+        url = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+    elif propriedade == 'kids':
+        url = "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+    elif propriedade == '2010':
+        url = "https://api.themoviedb.org/3/discover/movie?primary_release_year=2010&sort_by=vote_average.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+    elif propriedade == 'drama':
+        url = "https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
+    elif propriedade == 'tom_cruise':
+        url = "https://api.themoviedb.org/3/discover/movie?with_genres=878&with_cast=500&sort_by=vote_average.desc&api_key=f55e4895d1b273b5a84d1d5d5a7c9f2b"
     resposta = urllib.request.urlopen(url)
     dados = resposta.read()
     jsondata = json.loads(dados)
