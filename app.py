@@ -58,7 +58,7 @@ def filmes(propriedade):
 
 @app.route('/cursos')
 def lista_cursos():
-    
+    return render_template("cursos.html", cursos=cursos.query.all())
 
 if __name__ == "__main__":
     with app.app_context():

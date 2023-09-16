@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 style="text-align: center;">Lista de Cursos</h2>
+<hr>
+{% for curso in cursos %}
+    {{curso.nome}}
+{% endfor %}
+{% endblock conteudo %}
