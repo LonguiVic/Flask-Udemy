@@ -24,11 +24,10 @@
             <td>{{curso.ch}}</td>
             <td>
                 <a href="{{curso.id}}/atualiza_curso" class="btn btn-secondary btn-xs">Editar</a>
-                <a href="{{curso.id}}/remove_curso" class="btn btn-danger btn-xs">Excluir</a>
+                <a href="{{curso.id}}/remove_curso" onclick="return confirm('Deseja excluir esse registro?')" class="btn btn-danger btn-xs">Excluir</a>
             </td>
         </tr>
         {% endfor %}
-
     </tbody>
 </table>
 {% endblock conteudo %}

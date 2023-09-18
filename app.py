@@ -97,7 +97,10 @@ def atualiza_curso(id):
 
 @app.route('/<int:id>/remove_curso')
 def remove_curso(id):
-    pass
+    curso = cursos.query.filter_by(id=id).first()
+    db.session.delete(curso)
+    db.session.commit()
+    return redirect(url_for('lista_cursos'))
 
 
 if __name__ == "__main__":
