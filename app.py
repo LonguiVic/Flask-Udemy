@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 frutas = []
 registros = []
 
+
 class cursos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50))
@@ -22,6 +23,7 @@ class cursos(db.Model):
         self.descricao = descricao
         self.ch = ch
 
+
 @app.route('/', methods=["GET", "POST"])
 def principal():
     if request.method == "POST":
@@ -30,6 +32,7 @@ def principal():
             return redirect(url_for("principal"))  # Redireciona após o POST
     return render_template("index.html", frutas=frutas)
 
+
 @app.route('/sobre', methods=["GET", "POST"])
 def sobre():
     if request.method == "POST":
@@ -37,6 +40,7 @@ def sobre():
             registros.append({"aluno": request.form.get("aluno"), "nota": request.form.get("nota")})
             return redirect(url_for("sobre"))  # Redireciona após o POST
     return render_template("sobre.html", registros=registros)
+
 
 @app.route('/filmes/<propriedade>')
 def filmes(propriedade):
@@ -56,9 +60,11 @@ def filmes(propriedade):
     jsondata = json.loads(dados)
     return render_template("filmes.html", filmes=jsondata['results'])
 
+
 @app.route('/cursos')
 def lista_cursos():
     return render_template("cursos.html", cursos=cursos.query.all())
+
 
 @app.route('/cria_cursos', methods=["GET", "POST"])
 def cria_cursos():
@@ -75,6 +81,7 @@ def cria_cursos():
             return redirect(url_for('lista_cursos'))
     return render_template("novo_curso.html")
 
+
 @app.route('/<int:id>/atualiza_curso', methods=["GET", "POST"])
 def atualiza_curso(id):
     curso = cursos.query.filter_by(id=id).first()
@@ -86,6 +93,11 @@ def atualiza_curso(id):
         db.session.commit()
         return redirect(url_for('lista_cursos'))
     return render_template("atualiza_curso.html", curso=curso)
+
+
+@app.route('/<int:id>/remove_curso')
+def remove_curso(id):
+    pass
 
 
 if __name__ == "__main__":
