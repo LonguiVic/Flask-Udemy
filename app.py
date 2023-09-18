@@ -75,6 +75,12 @@ def cria_cursos():
             return redirect(url_for('lista_cursos'))
     return render_template("novo_curso.html")
 
+@app.route('/<int:id>/atualiza_curso', methods=["GET", "POST"])
+def atualiza_curso(id):
+    curso = cursos.query.filter_by(id=id).first()
+    return render_template("atualiza_curso.html", curso=curso)
+
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
