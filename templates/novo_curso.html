@@ -2,15 +2,23 @@
 {% block conteudo %}
 <h2 style="text-align: center;">Adicionar Novo Curso</h2>
 <hr>
+{% if request.method == 'POST' %}
+    {% for mensagem in get_flashed_messages() %}
+        <div class="alert alert-danger">
+            {{ mensagem }}
+        </div>
+    {% endfor %}
+{% endif %}
+
 <form action="{{url_for('cria_cursos')}}" method="POST" class="form-control">
     <label for="">Nome</label>
-    <input class="form-control" type="text" name="nome" placeholder="Nome do Curso" required>
+    <input class="form-control" type="text" name="nome" placeholder="Nome do Curso">
     <br>
     <label for="">Descrição</label>
-    <input class="form-control" type="text" name="descricao" placeholder="Descrição do Curso" required>
+    <input class="form-control" type="text" name="descricao" placeholder="Descrição do Curso">
     <br>
     <label for="">CH</label>
-    <input class="form-control" type="number" name="ch" placeholder="CH do Curso" required>
+    <input class="form-control" type="number" name="ch" placeholder="CH do Curso">
     <br>
     <button class="btn btn-success">Adicionar</button>
 </form>
